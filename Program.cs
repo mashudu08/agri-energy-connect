@@ -1,4 +1,5 @@
 using Agri_Energy_Connect.DataContext;
+using Agri_Energy_Connect.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<DatabaseContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("UserContext")));
+
+builder.Services.AddScoped<EmployeeService>();
+builder.Services.AddScoped<FarmerService>();
 
 var app = builder.Build();
 

@@ -3,33 +3,39 @@ using Agri_Energy_Connect.Models;
 
 namespace Agri_Energy_Connect.Services;
 
-public static class EmployeeService
+public class EmployeeService
 {
-    static void Register(Employee employee)
+    private readonly DatabaseContext _context;
+    public EmployeeService(DatabaseContext context)
+    {
+        _context = context;
+    }
+
+    public void Register(Employee employee)
     {
         try
         {
-            DatabaseContext context = new DatabaseContext();
-            context.Employees?.Add(employee);
-            context.SaveChanges();
+            //DatabaseContext context = new DatabaseContext();
+            _context.Employees?.Add(employee);
+            _context.SaveChanges();
         }
         catch (Exception ex)
         {
             throw;
         }
+    }
 
-        static Employee EmployeeById(string id)
+    public Employee EmployeeById(string id)
+    {
+        try
         {
-            try
-            {
-                DatabaseContext context = new DatabaseContext();
-                Employee employee = context.Employees?.Find(id)!;
-                return employee;
-            }
-            catch(Exception ex)
-            {
-                throw;
-            }
+            // DatabaseContext context = new DatabaseContext();
+            Employee employee = _context.Employees?.Find(id)!;
+            return employee;
+        }
+        catch (Exception ex)
+        {
+            throw;
         }
     }
 }
