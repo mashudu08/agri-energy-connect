@@ -5,37 +5,38 @@ namespace Agri_Energy_Connect.Services;
 
 public class EmployeeService
 {
-    private readonly DatabaseContext _context;
-    public EmployeeService(DatabaseContext context)
-    {
-        _context = context;
-    }
+    //private readonly DatabaseContext _context;
 
-    public void Register(Employee employee)
-    {
-        try
-        {
-            //DatabaseContext context = new DatabaseContext();
-            _context.Employees?.Add(employee);
-            _context.SaveChanges();
-        }
-        catch (Exception ex)
-        {
-            throw;
-        }
-    }
+    //public EmployeeService(DatabaseContext context)
+    //{
+    //    _context = context;
+    //}
 
-    public Employee EmployeeById(string id)
-    {
-        try
-        {
-            // DatabaseContext context = new DatabaseContext();
-            Employee employee = _context.Employees?.Find(id)!;
-            return employee;
-        }
-        catch (Exception ex)
-        {
-            throw;
-        }
-    }
+    //public void Register(Employee employee)
+    //{
+    //    try
+    //    {
+    //        //DatabaseContext context = new DatabaseContext();
+    //        _context.Employees?.Add(employee);
+    //        _context.SaveChanges();
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        throw;
+    //    }
+    //}
+
+    //public Employee EmployeeById(string id)
+    //{
+    //    try
+    //    {
+    //        // DatabaseContext context = new DatabaseContext();
+    //        Employee employee = _context.Employees?.Find(id)!;
+    //        return employee;
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        throw;
+    //    }
+    //}
 }

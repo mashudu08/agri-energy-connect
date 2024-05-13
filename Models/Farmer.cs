@@ -19,7 +19,12 @@ namespace Agri_Energy_Connect.Models
         public string Email { get; set; }
 
         [Required]
-        [Column("password")]
-        public string Password { get; set; }
+        [Column("location")]
+        public string Location { get; set; }
+
+        [Required]
+        [Column("phone number")]
+        public string Contact { get; set; }
     }
+
 }

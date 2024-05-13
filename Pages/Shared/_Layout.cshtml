@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+var isLoggedIn = Context.Request.Cookies["IsLoggedIn"] == "true";
+var role = Context.Request.Cookies["role"];
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -18,19 +22,55 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                @* <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between"> *@
+                    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            <a class="nav-link text-dark px-2" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            <a class="nav-link text-dark px-2" asp-area="" asp-page="/AboutUs">About Us</a>
                         </li>
+                        @* <li class="nav-item"> *@
+                        @*     <a class="nav-link text-dark px-2" asp-area="" asp-page="/FarmersDetails/CreateProduct">Add Product</a> *@
+                        @* </li> *@
+                        @* <li class="nav-item"> *@
+                        @*     <a class="nav-link text-dark px-2" asp-area="" asp-page="/FarmersDetails/ViewProducts">View Product</a> *@
+                        @* </li> *@
+                        @* <li class="nav-item"> *@
+                        @*     <a class="nav-link text-dark px-2" asp-area="" asp-page="/EmployeeDetails/AddFarmer">Add Farmer</a> *@
+                        @* </li> *@
+                        @* <li class="nav-item"> *@
+                        @*     <a class="nav-link text-dark px-2" asp-area="" asp-page="/EmployeeDetails/ViewFarmerDetails">View Farmer</a> *@
+                        @* </li> *@
+                        @* *@
+                        @* @if(isLoggedIn && role == "Employee") *@
+                        @* { *@
+                        @*     <li class="nav-item"> *@
+                        @*         <a class="nav-link text-dark" asp-area="" asp-page="/EmployeeDetails/FarmerDetails">Farmers</a> *@
+                        @*     </li> *@
+                        @* } *@
+                        @* @if(isLoggedIn && role == "Farmer") *@
+                        @* { *@
+                        @* <li class="nav-item"> *@
+                        @*     <a class="nav-link text-dark px-2" asp-area="" asp-page="/FarmerDetails/CreateProduct">Add Product</a> *@
+                        @* </li> *@
+                        @* } *@
+                    </ul>
+
+                <div class="col-md-3 text-end">
+                    <ul>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Login">Login</a>
                         </li>
+                        @if (isLoggedIn)
+                        {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Login">Logout</a>
+                        </li>
+                        }
                     </ul>
                 </div>
+                @* </div> *@
             </div>
         </nav>
     </header>
@@ -45,7 +85,9 @@
             &copy; 2024 - Agri-Energy Connect - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
-
+    <footer class="bg-light text-center p-3">
+        <p>&copy; 2024 Agri-Energy Connect. All rights reserved.</p>
+    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

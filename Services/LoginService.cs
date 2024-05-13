@@ -1,6 +1,8 @@
 ﻿using Agri_Energy_Connect.DataContext;
 using Agri_Energy_Connect.Models;
 
+using Agri_Energy_Connect.DataContext;
+using Agri_Energy_Connect.Models;
 namespace Agri_Energy_Connect.Services;
 
 public class LoginService
@@ -10,28 +12,14 @@ public class LoginService
 
     public LoginService(DatabaseContext context)
     {
-        _context = context;
+        _context = context ?? throw new ArgumentNullException(nameof(context));;
     }
 
-    public List<Farmer> GetAllFarmers()
+    public User Login(string email, string password)
     {
-        //DatabaseContext context = new DatabaseContext();
-        //List<Farmer> farmers = new List<Farmer> { context.Farmers.Find() };
-        return _context.Farmers.ToList();
-    }
+        return _context.Users?.FirstOrDefault(user => user.Email == email && user.Password == password)!;
 
-    public Farmer LoginFarmer(string email, string password)
-    {
-       // DatabaseContext context = new DatabaseContext();
-       //Farmer farmer = context.Farmers?.FirstOrDefault(farmer => farmer.email == email && farmer.password == password)!;
-        return _context.Farmers?.FirstOrDefault(farmer => farmer.Email == email && farmer.Password == password)!;
-    }
-
-    public Employee LoginEmployee(string email, string password)
-    {
-       // DatabaseContext context = new DatabaseContext();
-        //Employee employee = context.Employees?.FirstOrDefault(employee => employee.Email == email && employee.Password == password)!;
-        return _context.Employees?.FirstOrDefault(employee => employee.Email == email && employee.Password == password)!;
     }
 }
+
 
